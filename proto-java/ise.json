@@ -1,0 +1,16 @@
+{
+  "name": "Information Science",
+  "students": [{
+    "usn": "1si18is003",
+    "name": "Aditya Pathak",
+    "cgpa": 7.89
+  }, {
+    "usn": "1si18is063",
+    "name": "Amit Shahwal",
+    "cgpa": 9.89
+  }, {
+    "usn": "1si18is002",
+    "name": "Adarsh Shukla",
+    "cgpa": 8.12
+  }]
+}
