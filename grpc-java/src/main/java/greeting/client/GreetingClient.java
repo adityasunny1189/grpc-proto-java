@@ -1,8 +1,6 @@
 package greeting.client;
 
-import com.proto.calculator.CalculatorServiceGrpc;
-import com.proto.calculator.SumRequest;
-import com.proto.calculator.SumResponse;
+import com.proto.calculator.*;
 import com.proto.greeting.GreetingRequest;
 import com.proto.greeting.GreetingResponse;
 import com.proto.greeting.GreetingServiceGrpc;
@@ -26,6 +24,14 @@ public class GreetingClient {
     System.out.println("Calculation: " + response.getResult());
   }
 
+  private static void doPrimeCalculation(ManagedChannel channel) {
+    System.out.println("doPrimeCalculation");
+    CalculatorServiceGrpc.CalculatorServiceBlockingStub stub = CalculatorServiceGrpc.newBlockingStub(channel);
+    stub.calculatePrime(PrimeRequest.newBuilder().setNum(120).build()).forEachRemaining(response -> {
+      System.out.println(response.getNum());
+    });
+  }
+
   public static void main(String[] args) {
     if (args.length == 0) {
       System.out.println("Need one argument to work");
@@ -39,6 +45,7 @@ public class GreetingClient {
     switch (args[0]) {
       case "greet": doGreet(channel); break;
       case "calc": doCalculation(channel); break;
+      case "calc_prime": doPrimeCalculation(channel); break;
       default:
         System.out.println("Keyword invalid");
     }
